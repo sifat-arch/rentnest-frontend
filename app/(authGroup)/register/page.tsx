@@ -1,6 +1,7 @@
-import LoginForm from "../_components/LoginFrom";
+import React from "react";
+import RegisterForm from "../_components/RegisterFrom";
 
-export default function LoginPage() {
+const RegisterPage = () => {
   return (
     <div className="relative flex min-h-screen w-full items-center justify-center bg-zinc-950 p-4 text-zinc-100 antialiased selection:bg-primary selection:text-primary-foreground">
       {/* Background Radial Glow Effect */}
@@ -10,16 +11,18 @@ export default function LoginPage() {
         {/* FORM GENERIC TEXTS */}
         <div className="space-y-2 text-center">
           <h1 className="text-3xl font-bold tracking-tight text-zinc-100">
-            Welcome Back!
+            Create an Account
           </h1>
           <p className="text-sm text-zinc-400">
-            Enter your credentials to access your account
+            Enter your details to create your new account
           </p>
         </div>
 
-        {/* FORM */}
-        <LoginForm />
+        {/* FORM COMPONENT */}
+        <RegisterForm />
       </div>
     </div>
   );
-}
+};
+
+export default RegisterPage;

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { z } from "zod";
+import { fromJSONSchema, z } from "zod";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -16,6 +17,13 @@ type LoginState = {
     accessToken: string;
     refreshToken: string;
   };
+};
+
+type PrevStateRegister = {
+  success: boolean;
+  statusCode: number;
+  message: string;
+  data: any;
 };
 
 export const loginAction = async (
@@ -91,6 +99,63 @@ export const loginAction = async (
       redirect("/dashobard");
     }
   }
+
+  return result;
+};
+
+const registerSchema = z.object({
+  name: z
+    .string()
+    .min(1, "Name is required")
+    .min(3, "Name must be at least 3 characters")
+    .max(50, "Name must be at most 50 characters"),
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(1, "Password is required"),
+  role: z.string(),
+});
+
+export const registerAction = async (
+  prevState: PrevStateRegister,
+  formData: FormData,
+) => {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const role = formData.get("role");
+
+  const rowPayload = {
+    name,
+    email,
+    password,
+    role,
+  };
+
+  const validation = registerSchema.safeParse(rowPayload);
+
+  if (!validation.success) {
+    return {
+      success: false,
+      message: "Validation Error",
+      errors: validation.error.flatten().fieldErrors,
+    };
+  }
+
+  const payload = validation.data;
+
+  console.log(payload, "the paylaod");
+
+  const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+
+    body: JSON.stringify(payload),
+  });
+
+  const result = await res.json();
+
+  console.log(result, "register result");
 
   return result;
 };
