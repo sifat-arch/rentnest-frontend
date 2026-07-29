@@ -20,9 +20,8 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  { label: "Contact", href: "/contact" },
-  { label: "News", href: "/news" },
-  { label: "Premium", href: "/premium" },
+  // { label: "Contact", href: "/contact" },
+  { label: "all-properites", href: "all-properties" },
 ];
 
 // User menu items configuration
@@ -78,9 +77,7 @@ export function Navbar({ user }: NavbarProps) {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="shrink-0">
-            <span className="text-2xl font-bold text-primary">
-              NextJs Press
-            </span>
+            <span className="text-2xl font-bold text-primary">RentNest</span>
           </Link>
 
           {/* Nav Links */}
