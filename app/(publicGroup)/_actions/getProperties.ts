@@ -9,9 +9,11 @@ export const getProperties = async ({
 }) => {
   const params = new URLSearchParams();
 
-  if (query && query.searchTerm) {
-    params.set("searchTerm", query.searchTerm as string);
+  if (query && query.search) {
+    params.set("search", query.search as string);
   }
+
+  console.log(params, "params", query);
 
   const cookieStore = await cookies();
 
@@ -34,14 +36,14 @@ export const getProperties = async ({
       cache: "force-cache",
       next: {
         revalidate: 60 * 60 * 24,
-        tags: ["all-news"],
+        tags: ["all-properties"],
       },
     },
   );
 
   const result = await res.json();
 
-  console.log("all porperty result", result);
+  // console.log("all porperty result", result);
 
   return result;
 };

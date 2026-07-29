@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { PropertyList } from "../_components/propertiy/PropertyList";
+import { Skeleton } from "../_components/propertiy/NewsSkeleton";
+import { SearchBar } from "../_components/propertiy/NewsSearchBar";
 
 const GetAllProperties = async ({
   searchParams,
@@ -15,11 +17,11 @@ const GetAllProperties = async ({
             Browse the latest published stories.
           </p>
         </div>
-        {/* <NewsSearchBar /> */}
+        <SearchBar />
       </div>
 
-      <Suspense>
-        <PropertyList />
+      <Suspense fallback={<Skeleton />}>
+        <PropertyList searchParams={searchParams} />
       </Suspense>
     </div>
   );

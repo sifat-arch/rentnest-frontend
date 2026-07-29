@@ -1,8 +1,10 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { IProperty } from "@/lib/types";
 import { CalendarDays, MapPin, MessageSquare, Tag } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 type PropertyCardProps = {
   post: IProperty;
@@ -55,6 +57,10 @@ export function PropertyCard({ post }: PropertyCardProps) {
             {post.reviews.length} Reviews
           </div>
         </div>
+
+        <Link href={`/booking/${post.id}`} className="block">
+          <Button className="w-full">Book Now</Button>
+        </Link>
       </CardContent>
     </Card>
   );
