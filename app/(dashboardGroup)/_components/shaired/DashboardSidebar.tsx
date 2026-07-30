@@ -2,15 +2,13 @@
 "use client";
 import { ISidebarItems, NavbarProps } from "@/lib/types";
 import { usePathname } from "next/navigation";
-import { Newspaper } from "lucide-react";
-import React from "react";
+
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
 import Link from "next/link";

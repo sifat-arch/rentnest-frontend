@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 type PropertyState = {
@@ -45,9 +46,8 @@ export const createProperty = async (
       },
       body: JSON.stringify(payload),
     });
-
+    revalidateTag("landlord-properties", "max");
     const result = await res.json();
-
     return result;
   } catch {
     return {
