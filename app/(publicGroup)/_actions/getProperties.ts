@@ -13,7 +13,31 @@ export const getProperties = async ({
     params.set("search", query.search as string);
   }
 
-  console.log(params, "params", query);
+  if (query && query.minPrice) {
+    params.set("minPrice", query.minPrice as string);
+  }
+
+  if (query?.maxPrice) {
+    params.set("maxPrice", query.maxPrice as string);
+  }
+
+  if (query?.sortBy) {
+    params.set("sortBy", query.sortBy as string);
+  }
+
+  if (query?.sortOrder) {
+    params.set("sortOrder", query.sortOrder as string);
+  }
+
+  if (query?.page) {
+    params.set("page", query.page as string);
+  }
+
+  if (query?.limit) {
+    params.set("limit", query.limit as string);
+  }
+
+  console.log("the params", params.toString());
 
   const cookieStore = await cookies();
 
@@ -26,6 +50,7 @@ export const getProperties = async ({
     };
   }
 
+  console.log(params.toString(), "params is morning");
   const res = await fetch(
     `${process.env.BACKEND_API_URL}/api/property?${params.toString()}`,
     {
@@ -42,8 +67,6 @@ export const getProperties = async ({
   );
 
   const result = await res.json();
-
-  // console.log("all porperty result", result);
 
   return result;
 };

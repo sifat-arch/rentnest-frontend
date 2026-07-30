@@ -31,7 +31,7 @@ export function SearchBar() {
 
   return (
     <div className="relative w-full max-w-sm">
-      <SearchIcon className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
+      <SearchIcon className="pointer-events-none absolute top-1/3 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
       <Input
         defaultValue={
           searchParams.get("searchTerm")
@@ -40,7 +40,7 @@ export function SearchBar() {
         }
         // onChange={(e) => handleChange(e.target.value)}
         onChange={(e) => handleChange(e.target.value)}
-        placeholder="Search news..."
+        placeholder="Search properties"
         className="pl-9"
       />
     </div>

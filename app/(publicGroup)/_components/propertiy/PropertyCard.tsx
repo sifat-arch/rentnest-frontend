@@ -1,10 +1,11 @@
+"use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { IProperty } from "@/lib/types";
 import { CalendarDays, MapPin, MessageSquare, Tag } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
+import BookingButton from "./BookingButton";
 
 type PropertyCardProps = {
   post: IProperty;
@@ -58,9 +59,7 @@ export function PropertyCard({ post }: PropertyCardProps) {
           </div>
         </div>
 
-        <Link href={`/booking/${post.id}`} className="block">
-          <Button className="w-full">Book Now</Button>
-        </Link>
+        <BookingButton propertyId={post.id} />
       </CardContent>
     </Card>
   );

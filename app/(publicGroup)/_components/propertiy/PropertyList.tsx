@@ -10,8 +10,6 @@ export async function PropertyList({
 }) {
   const query = await searchParams;
 
-  console.log("the qeery", query);
-
   const result = await getProperties({ query });
 
   if (!result.success || !result.data?.length) {
