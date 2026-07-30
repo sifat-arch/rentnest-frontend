@@ -1,45 +1,40 @@
 import { ISidebarItems } from "@/lib/types";
 import { FileText, LayoutDashboard } from "lucide-react";
 
-const USER_SIDEBAR_ITEMS: ISidebarItems[] = [
+const TEANT_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
     label: "Dashboard",
-    href: "/dashboard",
+    href: "/tenant-dashboard",
     icon: LayoutDashboard,
   },
   {
-    label: "My Posts",
-    href: "/dashboard/my-posts",
-    icon: FileText,
-  },
-];
-const AUTHOR_SIDEBAR_ITEMS: ISidebarItems[] = [
-  {
-    label: "Admin Dashboard",
-    href: "/author-dashboard",
+    label: "my-bookings",
+    href: "/tenant-dashboard/my-bookings",
     icon: LayoutDashboard,
-  },
-  {
-    label: "My Posts ",
-    href: "/author-dashboard/my-posts",
-    icon: FileText,
   },
 ];
 const ADMIN_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
-    label: "Landlord Dashboard",
+    label: "Admin Dashboard",
     href: "/admin-dashboard",
     icon: LayoutDashboard,
   },
+];
+const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
-    label: "My Posts ",
-    href: "/author-dashboard/my-post",
-    icon: FileText,
+    label: "Landlord Dashboard",
+    href: "/landlord-dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    label: "create bookings",
+    href: "/landlord-dashboard",
+    icon: LayoutDashboard,
   },
 ];
 
 export const sidebarMenuItems = {
-  TENANT: USER_SIDEBAR_ITEMS,
-  LANDLORD: AUTHOR_SIDEBAR_ITEMS,
+  TENANT: TEANT_SIDEBAR_ITEMS,
+  LANDLORD: LANDLORD_SIDEBAR_ITEMS,
   ADMIN: ADMIN_SIDEBAR_ITEMS,
 };

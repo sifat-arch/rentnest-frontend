@@ -11,7 +11,7 @@ import { Mail, Lock, Loader2, AlertCircle } from "lucide-react";
 
 const LoginForm = () => {
   const searchParams = useSearchParams();
-  const redirectTo = searchParams.get("redirectTo");
+  const redirectTo = searchParams.get("redirectTo") ?? "";
   const [state, action, pending] = useActionState(
     loginAction.bind(null, redirectTo as string),
     false,

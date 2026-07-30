@@ -77,30 +77,24 @@ export const loginAction = async (
 
     const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload;
 
-    // if (
-    //   redirectTo &&
-    //   typeof redirectTo === "string" &&
-    //   redirectTo.startsWith("/") &&
-    //   !redirectTo.startsWith("//")
-    // ) {
-    //   redirect(redirectTo);
-    // }
-    // if (decodedToken.role === "TENANT") {
-    //   redirect("/dashboard/tenant");
-    // } else if (decodedToken.role === "LANDLORD") {
-    //   redirect("/dashboard/landlord");
-    // } else if (decodedToken.role === "ADMIN") {
-    //   redirect("/dashboard/admin");
-    // } else {
-    //   redirect("/dashboard");
-    // }
-
-    if (decodedToken) {
-      redirect("/dashobard");
+    if (
+      redirectTo &&
+      typeof redirectTo === "string" &&
+      redirectTo.startsWith("/") &&
+      !redirectTo.startsWith("//")
+    ) {
+      redirect(redirectTo);
+    }
+    if (decodedToken.role === "TENANT") {
+      redirect("/tenant-dashboard");
+    } else if (decodedToken.role === "LANDLORD") {
+      redirect("/landlord-dashboard");
+    } else if (decodedToken.role === "ADMIN") {
+      redirect("/admin-dashboard");
+    } else {
+      redirect("/dashboard");
     }
   }
-
-
 
   return result;
 };

@@ -73,23 +73,23 @@ export async function proxy(request: NextRequest) {
     }
   }
 
-  // const isPublicRoute = PUBLIC_ROUTES.some(
-  //   (route) => pathname === route || pathname.startsWith(route + "/"),
-  // );
+  const isPublicRoute = PUBLIC_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/"),
+  );
 
-  // const isAuthRoute = AUTH_ROUTES.some(
-  //   (route) => pathname === route || pathname.startsWith(route + "/"),
-  // );
+  const isAuthRoute = AUTH_ROUTES.some(
+    (route) => pathname === route || pathname.startsWith(route + "/"),
+  );
 
-  // if (!accessToken && !isPublicRoute && !isAuthRoute) {
-  //   const loginURL = new URL("/login", request.url);
+  if (!accessToken && !isPublicRoute && !isAuthRoute) {
+    const loginURL = new URL("/login", request.url);
 
-  //   loginURL.searchParams.set("redirectTo", pathname);
+    loginURL.searchParams.set("redirectTo", pathname);
 
-  //   return NextResponse.redirect(loginURL);
-  // }
+    return NextResponse.redirect(loginURL);
+  }
 
-  if (pathname.startsWith("/dashobard") && userRole !== "TENANT") {
+  if (pathname.startsWith("/tenant-dashobard") && userRole !== "TENANT") {
     return NextResponse.redirect(new URL("/not-found", request.url));
   } else if (pathname.startsWith("/admin-dashboard") && userRole !== "ADMIN") {
     return NextResponse.redirect(new URL("/not-found", request.url));

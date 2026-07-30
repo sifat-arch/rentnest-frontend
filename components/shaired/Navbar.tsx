@@ -53,10 +53,10 @@ export function Navbar({ user }: NavbarProps) {
   const router = useRouter();
   const handleUserMenuAction = async (action: string) => {
     if (action === "dashboard") {
-      if (user.data.role === "USER") {
-        router.push("/dashboard");
-      } else if (user.data.role === "AUTHOR") {
-        router.push("/author-dashboard ");
+      if (user.data.role === "TENANT") {
+        router.push("/tenant-dashboard");
+      } else if (user.data.role === "LANDLORD") {
+        router.push("/landlord-dashboard ");
       } else if (user.data.role === "ADMIN") {
         router.push("/admin-dashboard");
       }

@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserDashobard = () => {
+const TenantDashboard = () => {
   return <div>UserDashoard</div>;
 };
 
-export default UserDashobard;
+export default TenantDashboard;
