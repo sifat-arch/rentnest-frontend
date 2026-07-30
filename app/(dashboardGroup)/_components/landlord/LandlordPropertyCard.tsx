@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/card";
 
 import { IProperty } from "@/lib/types";
+import Link from "next/link";
 
 type Props = {
   property: IProperty;
@@ -51,9 +52,11 @@ const LandlordPropertyCard = ({ property }: Props) => {
       </CardContent>
 
       <CardFooter className="flex justify-end gap-3">
-        <Button size="icon" variant="outline">
-          <Pencil className="h-4 w-4" />
-        </Button>
+        <Link href={`/landlord-dashboard/update-property/${property.id}`}>
+          <Button size="icon" variant="outline">
+            <Pencil className="h-4 w-4" />
+          </Button>
+        </Link>
 
         <Button size="icon" variant="destructive">
           <Trash2 className="h-4 w-4" />

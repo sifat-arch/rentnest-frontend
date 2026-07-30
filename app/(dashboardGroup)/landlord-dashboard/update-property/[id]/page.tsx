@@ -1,5 +1,5 @@
-import UpdatePropertyForm from "../../_components/landlord/UpdatePropertyForm";
-import { getProperty } from "../../_actions/getProperty";
+import { getProperty } from "@/app/(dashboardGroup)/_actions/getProperty";
+import UpdatePropertyForm from "@/app/(dashboardGroup)/_components/landlord/UpdatePropertyFrom";
 
 type Props = {
   params: Promise<{
@@ -8,9 +8,9 @@ type Props = {
 };
 
 const UpdatePropertyPage = async ({ params }: Props) => {
-  const { propertyId } = await params;
+  const { id } = await params;
 
-  const result = await getProperty(propertyId);
+  const result = await getProperty(id);
 
   return (
     <div className="space-y-8">

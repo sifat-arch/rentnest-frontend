@@ -42,3 +42,24 @@ export type ISidebarItems = {
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
 };
+// export type IProperty = {
+//   success: boolean;
+//   statusCode: number;
+//   message: string;
+//   meta: null;
+//   data: {
+//     id: string;
+//     title: string;
+//     location: string;
+//     price: number;
+//     description: string;
+//     image: string | null;
+//     categoryId: string;
+//     landlordId: string;
+//     createdAt: string;
+//     category: {
+//       id: string;
+//       name: string;
+//     };
+//   };
+// };
