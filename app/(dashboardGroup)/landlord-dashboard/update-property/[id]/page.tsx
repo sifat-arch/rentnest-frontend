@@ -3,7 +3,7 @@ import UpdatePropertyForm from "@/app/(dashboardGroup)/_components/landlord/Upda
 
 type Props = {
   params: Promise<{
-    propertyId: string;
+    id: string;
   }>;
 };
 

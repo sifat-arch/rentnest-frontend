@@ -41,6 +41,11 @@ const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
     href: "/landlord-dashboard/get-all-properties",
     icon: LayoutDashboard,
   },
+  {
+    label: "Bookings",
+    href: "/landlord-dashboard/bookings",
+    icon: LayoutDashboard,
+  },
 ];
 
 export const sidebarMenuItems = {
