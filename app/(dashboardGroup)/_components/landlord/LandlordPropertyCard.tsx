@@ -12,6 +12,7 @@ import {
 
 import { IProperty } from "@/lib/types";
 import Link from "next/link";
+import DeletePropertyButton from "./DeletePropertyButton";
 
 type Props = {
   property: IProperty;
@@ -58,9 +59,7 @@ const LandlordPropertyCard = ({ property }: Props) => {
           </Button>
         </Link>
 
-        <Button size="icon" variant="destructive">
-          <Trash2 className="h-4 w-4" />
-        </Button>
+        <DeletePropertyButton propertyId={property.id} />
       </CardFooter>
     </Card>
   );

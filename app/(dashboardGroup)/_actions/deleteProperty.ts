@@ -34,8 +34,8 @@ export const deleteProperty = async (propertyId: string) => {
     };
   }
 
-  revalidateTag("all-properties", "max");
-  revalidateTag("landlord-properties", "max");
+  revalidateTag("all-properties", { expire: 0 });
+  revalidateTag("landlord-properties", { expire: 0 });
 
   return {
     success: true,
