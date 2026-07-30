@@ -37,8 +37,8 @@ const DashboardSidebar = ({ user }: NavbarProps) => {
       <SidebarContent>
         <SidebarGroup>
           <SidebarMenu>
-            {navItem.map((item) => (
-              <SidebarMenuSubItem>
+            {navItem.map((item, i) => (
+              <SidebarMenuSubItem key={i}>
                 <SidebarMenuButton asChild isActive={pathname === item.href}>
                   <Link href={item.href}>
                     <item.icon />

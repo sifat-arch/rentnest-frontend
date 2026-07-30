@@ -19,6 +19,11 @@ const ADMIN_SIDEBAR_ITEMS: ISidebarItems[] = [
     href: "/admin-dashboard",
     icon: LayoutDashboard,
   },
+  {
+    label: "Create Categorys",
+    href: "/admin-dashboard/create-category",
+    icon: LayoutDashboard,
+  },
 ];
 const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
   {

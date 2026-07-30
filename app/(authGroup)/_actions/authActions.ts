@@ -138,8 +138,6 @@ export const registerAction = async (
 
   const payload = validation.data;
 
-  console.log(payload, "the paylaod");
-
   const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/register`, {
     method: "POST",
     headers: {
