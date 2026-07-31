@@ -34,6 +34,8 @@ export const statusUpdate = async (
 
   const result = await res.json();
 
+  console.log("booking status adiming ", result);
+
   if (!res.ok) {
     return {
       success: false,
@@ -41,7 +43,7 @@ export const statusUpdate = async (
     };
   }
 
-  revalidateTag("landlord-bookings", "max");
+  revalidateTag("landlord-bookings", { expire: 0 });
 
   return {
     success: true,

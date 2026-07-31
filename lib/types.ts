@@ -42,24 +42,44 @@ export type ISidebarItems = {
     Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>
   >;
 };
-// export type IProperty = {
-//   success: boolean;
-//   statusCode: number;
-//   message: string;
-//   meta: null;
-//   data: {
-//     id: string;
-//     title: string;
-//     location: string;
-//     price: number;
-//     description: string;
-//     image: string | null;
-//     categoryId: string;
-//     landlordId: string;
-//     createdAt: string;
-//     category: {
-//       id: string;
-//       name: string;
-//     };
-//   };
-// };
+
+export type IBooking = {
+  id: string;
+  userId: string;
+  propertyId: string;
+  status: "PENDING" | "APPROVED" | "REJECTED" | "PAID";
+  createdAt: string;
+
+  property: {
+    id: string;
+    title: string;
+    location: string;
+    price: number;
+    description: string;
+    image: string | null;
+    categoryId: string;
+    landlordId: string;
+    createdAt: string;
+  };
+
+  user: {
+    id: string;
+    name: string;
+    email: string;
+    password: string;
+    role: "TENANT" | "LANDLORD" | "ADMIN";
+    status: "ACTIVE" | "INACTIVE";
+    createdAt: string;
+  };
+
+  payment: {
+    id: string;
+    bookingId: string;
+    userId: string;
+    amount: number;
+    provider: "STRIPE";
+    status: "PENDING" | "SUCCESS" | "FAILED";
+    transactionId: string;
+    createdAt: string;
+  } | null;
+};

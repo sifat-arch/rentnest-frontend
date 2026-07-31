@@ -24,6 +24,11 @@ const ADMIN_SIDEBAR_ITEMS: ISidebarItems[] = [
     href: "/admin-dashboard/create-category",
     icon: LayoutDashboard,
   },
+  {
+    label: "All Bookings",
+    href: "/admin-dashboard/all-bookings",
+    icon: LayoutDashboard,
+  },
 ];
 const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
