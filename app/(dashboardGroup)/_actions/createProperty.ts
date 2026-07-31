@@ -35,8 +35,6 @@ export const createProperty = async (
     categoryId: formData.get("categoryId"),
   };
 
-  console.log("payload", payload);
-
   try {
     const res = await fetch(`${process.env.BACKEND_API_URL}/api/property`, {
       method: "POST",
@@ -46,7 +44,7 @@ export const createProperty = async (
       },
       body: JSON.stringify(payload),
     });
-    revalidateTag("landlord-properties", "max");
+    revalidateTag("landlord-properties", { expire: 0 });
     const result = await res.json();
     return result;
   } catch {

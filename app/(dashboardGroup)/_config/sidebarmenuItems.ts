@@ -1,5 +1,79 @@
+// import { ISidebarItems } from "@/lib/types";
+// import { FileText, LayoutDashboard } from "lucide-react";
+
+// const TEANT_SIDEBAR_ITEMS: ISidebarItems[] = [
+//   {
+//     label: "Dashboard",
+//     href: "/tenant-dashboard",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "my-bookings",
+//     href: "/tenant-dashboard/my-bookings",
+//     icon: LayoutDashboard,
+//   },
+// ];
+// const ADMIN_SIDEBAR_ITEMS: ISidebarItems[] = [
+//   {
+//     label: "Admin Dashboard",
+//     href: "/admin-dashboard",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "Create Categorys",
+//     href: "/admin-dashboard/create-category",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "All Bookings",
+//     href: "/admin-dashboard/all-bookings",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "All Users",
+//     href: "/admin-dashboard/all-users",
+//     icon: LayoutDashboard,
+//   },
+// ];
+// const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
+//   {
+//     label: "Landlord Dashboard",
+//     href: "/landlord-dashboard",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "create bookings",
+//     href: "/landlord-dashboard",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "All properties",
+//     href: "/landlord-dashboard/get-all-properties",
+//     icon: LayoutDashboard,
+//   },
+//   {
+//     label: "Bookings",
+//     href: "/landlord-dashboard/bookings",
+//     icon: LayoutDashboard,
+//   },
+// ];
+
+// export const sidebarMenuItems = {
+//   TENANT: TEANT_SIDEBAR_ITEMS,
+//   LANDLORD: LANDLORD_SIDEBAR_ITEMS,
+//   ADMIN: ADMIN_SIDEBAR_ITEMS,
+// };
 import { ISidebarItems } from "@/lib/types";
-import { FileText, LayoutDashboard } from "lucide-react";
+import {
+  LayoutDashboard,
+  BookOpen,
+  Building2,
+  FolderPlus,
+  Users,
+  ClipboardList,
+  HousePlus,
+  Home,
+} from "lucide-react";
 
 const TEANT_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
@@ -8,48 +82,55 @@ const TEANT_SIDEBAR_ITEMS: ISidebarItems[] = [
     icon: LayoutDashboard,
   },
   {
-    label: "my-bookings",
+    label: "My Bookings",
     href: "/tenant-dashboard/my-bookings",
-    icon: LayoutDashboard,
+    icon: BookOpen,
   },
 ];
+
 const ADMIN_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
-    label: "Admin Dashboard",
+    label: "Dashboard",
     href: "/admin-dashboard",
     icon: LayoutDashboard,
   },
   {
-    label: "Create Categorys",
+    label: "Create Categories",
     href: "/admin-dashboard/create-category",
-    icon: LayoutDashboard,
+    icon: FolderPlus,
   },
   {
     label: "All Bookings",
     href: "/admin-dashboard/all-bookings",
-    icon: LayoutDashboard,
+    icon: ClipboardList,
+  },
+  {
+    label: "All Users",
+    href: "/admin-dashboard/all-users",
+    icon: Users,
   },
 ];
+
 const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
   {
-    label: "Landlord Dashboard",
+    label: "Dashboard",
     href: "/landlord-dashboard",
     icon: LayoutDashboard,
   },
   {
-    label: "create bookings",
+    label: "Create Property",
     href: "/landlord-dashboard",
-    icon: LayoutDashboard,
+    icon: HousePlus,
   },
   {
-    label: "All properties",
+    label: "All Properties",
     href: "/landlord-dashboard/get-all-properties",
-    icon: LayoutDashboard,
+    icon: Building2,
   },
   {
     label: "Bookings",
     href: "/landlord-dashboard/bookings",
-    icon: LayoutDashboard,
+    icon: ClipboardList,
   },
 ];
 

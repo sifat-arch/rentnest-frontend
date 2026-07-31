@@ -13,8 +13,6 @@ export const getAllBookings = async ({
     params.set("search", query.search as string);
   }
 
-  console.log("Booking params:", params.toString());
-
   const cookieStore = await cookies();
 
   const accessToken = cookieStore.get("accessToken")?.value || null;
@@ -26,8 +24,6 @@ export const getAllBookings = async ({
       data: [],
     };
   }
-
-  console.log("the params ", params.toString());
 
   try {
     const res = await fetch(

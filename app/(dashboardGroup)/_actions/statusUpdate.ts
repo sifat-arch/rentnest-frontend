@@ -44,6 +44,7 @@ export const statusUpdate = async (
   }
 
   revalidateTag("landlord-bookings", { expire: 0 });
+  revalidateTag("all-bookings", { expire: 0 });
 
   return {
     success: true,

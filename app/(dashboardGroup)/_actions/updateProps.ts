@@ -30,7 +30,7 @@ export const updateProperty = async (
   const result = await res.json();
 
   if (result.success) {
-    revalidateTag("all-properties", "max");
+    revalidateTag("all-properties", { expire: 0 });
   }
 
   return result;

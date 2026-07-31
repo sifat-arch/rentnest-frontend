@@ -22,7 +22,7 @@ const AllBookings = async ({ searchParams }: AllBookingsProps) => {
   }
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 max-w-7xl py-5 mx-auto">
       <BookingSearchBar />
       <AdminBookingList result={result} />
     </div>
