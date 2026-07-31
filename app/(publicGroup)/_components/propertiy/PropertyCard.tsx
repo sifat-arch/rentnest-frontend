@@ -1,4 +1,3 @@
-"use client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -6,12 +5,14 @@ import { IProperty } from "@/lib/types";
 import { CalendarDays, MapPin, MessageSquare, Tag } from "lucide-react";
 import Image from "next/image";
 import BookingButton from "./BookingButton";
+import DeleteAdminPropertyButtion from "@/app/(dashboardGroup)/admin-dashboard/_components/DeleteAdminPropertyButtion";
 
 type PropertyCardProps = {
   post: IProperty;
+  role: string;
 };
 
-export function PropertyCard({ post }: PropertyCardProps) {
+export function PropertyCard({ post, role }: PropertyCardProps) {
   return (
     <Card className="overflow-hidden rounded-xl border pt-0 transition-all duration-300 hover:shadow-lg">
       <div className="relative h-56 w-full">
@@ -60,6 +61,9 @@ export function PropertyCard({ post }: PropertyCardProps) {
         </div>
 
         <BookingButton propertyId={post.id} />
+        {role === "ADMIN" && (
+          <DeleteAdminPropertyButtion propertyId={post.id} />
+        )}
       </CardContent>
     </Card>
   );
