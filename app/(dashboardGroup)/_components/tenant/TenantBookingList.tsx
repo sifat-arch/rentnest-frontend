@@ -92,7 +92,8 @@ const TenantBookingList = async () => {
 
               <div className="flex items-center">
                 {booking.status !== "PENDING" &&
-                  booking.status !== "REJECTED" && (
+                  booking.status !== "REJECTED" &&
+                  booking.status !== "PAID" && (
                     <PaymentButton bookingId={booking.id} />
                   )}
               </div>

@@ -5,6 +5,7 @@ import { toast } from "sonner";
 
 import { CreditCard } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { createPaymentSession } from "../../_actions/createPaymentSession";
 
 type PaymentButtonProps = {
   bookingId: string;
@@ -13,16 +14,18 @@ type PaymentButtonProps = {
 const PaymentButton = ({ bookingId }: PaymentButtonProps) => {
   const [pending, startTransition] = useTransition();
 
+  console.log("the booking id", bookingId);
+
   const handlePayment = () => {
     startTransition(async () => {
-      // const result = await createPaymentSession(bookingId);
+      const result = await createPaymentSession(bookingId);
 
       if (!result.success) {
         toast.error(result.message);
         return;
       }
 
-      window.location.href = result.data.url;
+      window.location.href = result.data;
     });
   };
 

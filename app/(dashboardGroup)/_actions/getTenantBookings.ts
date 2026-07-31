@@ -22,11 +22,7 @@ export const getTenantBookings = async () => {
         headers: {
           Cookie: `accessToken=${accessToken}`,
         },
-        cache: "force-cache",
-        next: {
-          revalidate: 60 * 60 * 24,
-          tags: ["tenant-bookings"],
-        },
+        cache: "no-store",
       },
     );
 
