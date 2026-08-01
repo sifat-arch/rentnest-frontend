@@ -1,75 +1,56 @@
-import CreatePropertyForm from "../_components/landlord/CreateProperty";
+import { getProperties } from "@/app/(publicGroup)/_actions/getProperties";
+import LandlordStats from "../_components/landlord/LandlordStats";
+import { getAllBookings } from "../admin-dashboard/_actions/getAllBookings";
+import { getLandlordProperties } from "../_actions/getLandLordPropeties";
+import { getBookings } from "../_actions/getBookings";
 
-const LandlordDashboard = () => {
+const LandlordDashboard = async () => {
+  const [propertiesResult, bookingsResult] = await Promise.all([
+    getLandlordProperties(),
+    getBookings(),
+  ]);
+
+  const totalProperties = propertiesResult.success
+    ? propertiesResult.data.length
+    : 0;
+
+  const totalBookings = bookingsResult.success ? bookingsResult.data.length : 0;
+
   return (
-    <div className="min-h-screen bg-muted/30">
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        {/* Header */}
-        <div className="mb-8 rounded-xl border bg-background p-6 shadow-sm">
-          <h1 className="text-3xl font-bold">Landlord Dashboard</h1>
-          <p className="mt-2 text-muted-foreground">
-            Manage your properties, update listings, and monitor bookings from
-            one place.
-          </p>
-        </div>
+    <div className="space-y-8">
+      <div>
+        <h1 className="text-3xl font-bold tracking-tight">
+          Landlord Dashboard
+        </h1>
+        <p className="mt-2 text-muted-foreground">
+          Welcome back! Here's an overview of your rental business.
+        </p>
+      </div>
 
-        {/* Dashboard Grid */}
-        <div className="grid gap-8 lg:grid-cols-3">
-          {/* Left Side */}
-          <div className="space-y-6 lg:col-span-2">
-            <div className="rounded-xl border bg-background p-6 shadow-sm">
-              <h2 className="mb-5 text-xl font-semibold">
-                Create New Property
-              </h2>
+      <LandlordStats
+        totalProperties={totalProperties}
+        totalBookings={totalBookings}
+      />
 
-              <CreatePropertyForm />
-            </div>
+      <div className="rounded-2xl border bg-background p-8">
+        <h2 className="text-xl font-semibold">Quick Overview</h2>
+
+        <div className="mt-6 grid gap-4 md:grid-cols-2">
+          <div className="rounded-xl border p-5">
+            <h3 className="font-medium">🏠 Properties</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Manage your listed properties, update information and monitor
+              availability.
+            </p>
           </div>
 
-          {/* Right Side */}
-          <div className="space-y-6">
-            <div className="rounded-xl border bg-background p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold">Quick Actions</h2>
-
-              <div className="space-y-3">
-                <button className="w-full rounded-lg border px-4 py-2 text-left transition hover:bg-muted">
-                  ➕ Create Property
-                </button>
-
-                <button className="w-full rounded-lg border px-4 py-2 text-left transition hover:bg-muted">
-                  📝 Update Property
-                </button>
-
-                <button className="w-full rounded-lg border px-4 py-2 text-left transition hover:bg-muted">
-                  📅 View Bookings
-                </button>
-              </div>
-            </div>
-
-            <div className="rounded-xl border bg-background p-6 shadow-sm">
-              <h2 className="mb-4 text-lg font-semibold">Statistics</h2>
-
-              <div className="space-y-4">
-                <div className="flex items-center justify-between rounded-lg bg-muted p-3">
-                  <span>Total Properties</span>
-                  <span className="font-bold">0</span>
-                </div>
-
-                <div className="flex items-center justify-between rounded-lg bg-muted p-3">
-                  <span>Total Bookings</span>
-                  <span className="font-bold">0</span>
-                </div>
-
-                <div className="flex items-center justify-between rounded-lg bg-muted p-3">
-                  <span>Pending Requests</span>
-                  <span className="font-bold">0</span>
-                </div>
-              </div>
-            </div>
+          <div className="rounded-xl border p-5">
+            <h3 className="font-medium">📅 Bookings</h3>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Review incoming booking requests and manage tenant reservations.
+            </p>
           </div>
         </div>
-
-        {/* Future Section */}
       </div>
     </div>
   );

@@ -119,7 +119,7 @@ const LANDLORD_SIDEBAR_ITEMS: ISidebarItems[] = [
   },
   {
     label: "Create Property",
-    href: "/landlord-dashboard",
+    href: "/landlord-dashboard/create-property",
     icon: HousePlus,
   },
   {

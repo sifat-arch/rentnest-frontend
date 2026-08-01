@@ -29,7 +29,7 @@ export const createCategory = async (prevState: any, formData: FormData) => {
     body: JSON.stringify(payload),
   });
 
-  revalidateTag("categories", "max");
+  revalidateTag("categories", { expire: 0 });
 
   return await res.json();
 };

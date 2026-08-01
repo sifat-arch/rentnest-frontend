@@ -28,8 +28,6 @@ export const getCategories = async () => {
     });
 
     return await res.json();
-
-    console.log("categories", res.json());
   } catch {
     return {
       success: false,
