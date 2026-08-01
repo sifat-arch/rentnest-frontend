@@ -1,6 +1,6 @@
 import CreatePropertyForm from "../../_components/landlord/CreateProperty";
 
-const LandlordDashboard = () => {
+const CreateProperty = () => {
   return (
     <div className="min-h-screen bg-muted/30">
       <div className="mx-auto max-w-7xl px-4 py-8">
@@ -75,4 +75,4 @@ const LandlordDashboard = () => {
   );
 };
 
-export default LandlordDashboard;
+export default CreateProperty;

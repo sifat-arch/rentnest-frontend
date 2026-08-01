@@ -23,7 +23,7 @@ const LandlordDashboard = async () => {
           Landlord Dashboard
         </h1>
         <p className="mt-2 text-muted-foreground">
-          Welcome back! Here's an overview of your rental business.
+          Welcome back! Here an overview of your rental business.
         </p>
       </div>
 

@@ -20,7 +20,6 @@ const navItems = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
-  // { label: "Contact", href: "/contact" },
   { label: "all-properites", href: "all-properties" },
 ];
 
@@ -61,6 +60,11 @@ export function Navbar({ user }: NavbarProps) {
         router.push("/admin-dashboard");
       }
 
+      return;
+    }
+
+    if (action === "profile") {
+      router.push("/profile");
       return;
     }
 

@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import { getAllBookings } from "../_actions/getAllBookings";
 import AdminBookingList from "../_components/AdminBookingLIst";
 import BookingSearchBar from "../_components/BookingSearchBar";
+import AllBookingsSkeletons from "@/service/AllBookingsSkeletonsProps";
 
 type AllBookingsProps = {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -22,10 +24,12 @@ const AllBookings = async ({ searchParams }: AllBookingsProps) => {
   }
 
   return (
-    <div className="space-y-4 max-w-7xl py-5 mx-auto">
-      <BookingSearchBar />
-      <AdminBookingList result={result} />
-    </div>
+    <Suspense fallback={<AllBookingsSkeletons />}>
+      <div className="space-y-4 max-w-7xl py-5 mx-auto">
+        <BookingSearchBar />
+        <AdminBookingList result={result} />
+      </div>
+    </Suspense>
   );
 };
 
