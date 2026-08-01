@@ -1,8 +1,7 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import { useActionState, useCallback, useEffect, useState } from "react";
-import { Loader2, MessageSquare } from "lucide-react";
+import { Loader2, MessageSquare, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import {
@@ -24,6 +23,7 @@ import { Separator } from "@/components/ui/separator";
 import StarRating from "./StarRating";
 import { createReview } from "@/service/createReview";
 import { getReview } from "@/service/getReview";
+import { deleteReview } from "@/service/deleteReview";
 
 interface IReview {
   id: string;
@@ -39,6 +39,7 @@ interface IReview {
 
 interface ReviewsPopupProps {
   postId: string;
+  role: string;
 }
 
 const initialState = {
@@ -47,7 +48,7 @@ const initialState = {
   data: null,
 };
 
-export default function ReviewsPopup({ postId }: ReviewsPopupProps) {
+export default function ReviewsPopup({ postId, role }: ReviewsPopupProps) {
   const [open, setOpen] = useState(false);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [rating, setRating] = useState(0);
@@ -86,6 +87,19 @@ export default function ReviewsPopup({ postId }: ReviewsPopupProps) {
       toast.error(state.message);
     }
   }, [state]);
+
+  const handleDelete = async (id: string) => {
+    const result = await deleteReview(id);
+
+    if (result.success) {
+      toast.success(result.message);
+
+      loadReviews();
+    } else {
+      toast.error(result.message);
+    }
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -162,6 +176,16 @@ export default function ReviewsPopup({ postId }: ReviewsPopupProps) {
 
                         <StarRating value={review.rating} readOnly size={16} />
                       </div>
+
+                      {role === "ADMIN" && (
+                        <Button
+                          size="icon"
+                          variant="ghost"
+                          onClick={() => handleDelete(review.id)}
+                        >
+                          <Trash2 className="h-4 w-4 text-red-500" />
+                        </Button>
+                      )}
 
                       <p className="text-sm text-muted-foreground pt-1">
                         {review.comment}

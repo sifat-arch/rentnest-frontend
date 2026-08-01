@@ -7,13 +7,15 @@ import Image from "next/image";
 import BookingButton from "./BookingButton";
 import DeleteAdminPropertyButtion from "@/app/(dashboardGroup)/admin-dashboard/_components/DeleteAdminPropertyButtion";
 import ReviewsPopup from "@/components/shaired/ReviewsPopup";
+import { getMe } from "@/app/(authGroup)/_actions/getMe";
 
 type PropertyCardProps = {
   post: IProperty;
-  role: string;
 };
 
-export function PropertyCard({ post, role }: PropertyCardProps) {
+export async function PropertyCard({ post }: PropertyCardProps) {
+  const user = await getMe();
+  const role = user?.data?.role;
   return (
     <Card className="overflow-hidden rounded-xl border pt-0 transition-all duration-300 hover:shadow-lg">
       <div className="relative h-56 w-full">
@@ -55,7 +57,7 @@ export function PropertyCard({ post, role }: PropertyCardProps) {
             {new Date(post.createdAt).toLocaleDateString()}
           </div>
 
-          <ReviewsPopup postId={post.id} initialReviews={post.reviews} />
+          <ReviewsPopup postId={post.id} role={role} />
         </div>
 
         <BookingButton propertyId={post.id} />
