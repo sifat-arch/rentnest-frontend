@@ -37,8 +37,6 @@ export const getProperties = async ({
     params.set("limit", query.limit as string);
   }
 
-  console.log("the params", params.toString());
-
   const cookieStore = await cookies();
 
   const accessToken = cookieStore.get("accessToken")?.value || null;

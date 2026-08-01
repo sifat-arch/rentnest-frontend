@@ -6,6 +6,7 @@ import { CalendarDays, MapPin, MessageSquare, Tag } from "lucide-react";
 import Image from "next/image";
 import BookingButton from "./BookingButton";
 import DeleteAdminPropertyButtion from "@/app/(dashboardGroup)/admin-dashboard/_components/DeleteAdminPropertyButtion";
+import ReviewsPopup from "@/components/shaired/ReviewsPopup";
 
 type PropertyCardProps = {
   post: IProperty;
@@ -54,10 +55,7 @@ export function PropertyCard({ post, role }: PropertyCardProps) {
             {new Date(post.createdAt).toLocaleDateString()}
           </div>
 
-          <div className="flex items-center gap-1">
-            <MessageSquare className="size-4" />
-            {post.reviews.length} Reviews
-          </div>
+          <ReviewsPopup postId={post.id} initialReviews={post.reviews} />
         </div>
 
         <BookingButton propertyId={post.id} />

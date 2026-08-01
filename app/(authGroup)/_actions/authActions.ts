@@ -85,15 +85,17 @@ export const loginAction = async (
     ) {
       redirect(redirectTo);
     }
-    if (decodedToken.role === "TENANT") {
-      redirect("/tenant-dashboard");
-    } else if (decodedToken.role === "LANDLORD") {
-      redirect("/landlord-dashboard");
-    } else if (decodedToken.role === "ADMIN") {
-      redirect("/admin-dashboard");
-    } else {
-      redirect("/dashboard");
-    }
+    // if (decodedToken.role === "TENANT") {
+    //   redirect("/tenant-dashboard");
+    // } else if (decodedToken.role === "LANDLORD") {
+    //   redirect("/landlord-dashboard");
+    // } else if (decodedToken.role === "ADMIN") {
+    //   redirect("/admin-dashboard");
+    // } else {
+    //   redirect("/dashboard");
+    // }
+
+    redirect("/");
   }
 
   return result;
