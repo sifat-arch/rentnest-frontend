@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏠 RentNest — Rental Property Marketplace
 
-## Getting Started
+> A modern rental property platform designed to make property discovery, listing management, and rental requests easier for tenants and landlords.
 
-First, run the development server:
+## 📖 About The Project
+
+**RentNest** is a rental property marketplace frontend built to provide a smooth and user-friendly experience for people searching for rental properties and property owners managing their listings.
+
+The platform is designed around three user roles:
+
+- **Tenants:** Discover properties and manage rental requests.
+- **Landlords:** Create, update, and manage property listings.
+- **Administrators:** Manage users and oversee platform activities.
+
+The goal is to simplify the rental process through an intuitive interface, responsive design, and organized property management workflows.
+
+## ✨ Key Features
+
+### 🏡 Property Discovery
+- Browse available rental properties.
+- Search and filter properties based on relevant criteria.
+- View detailed property information.
+- Explore property images, pricing, location, and amenities.
+
+### 👤 Tenant Experience
+- Register and log in to an account.
+- Browse and view property details.
+- Submit rental requests.
+- Manage rental request history.
+- Access tenant-related dashboard features.
+
+### 🏢 Landlord Dashboard
+- Create and manage property listings.
+- Update property information and availability.
+- View incoming rental requests.
+- Manage tenant requests through the dashboard.
+
+### 🛡️ Admin Dashboard
+- Manage users and platform activities.
+- Monitor property listings.
+- Oversee rental-related operations.
+
+### 📱 Responsive User Interface
+- Responsive layouts for desktop, tablet, and mobile.
+- Reusable UI components.
+- Form validation and user feedback.
+- Loading, error, and empty states where implemented.
+
+## 🛠️ Tech Stack
+
+Update this list to match the technologies used in your actual repository.
+
+| Technology | Purpose |
+|---|---|
+| Next.js | React framework |
+| React | User interface |
+| TypeScript | Type safety |
+| Tailwind CSS | Responsive styling |
+| shadcn/ui | Reusable UI components |
+| Lucide React | Icons |
+| TanStack Query | Server-state management |
+| Zustand | Client-state management |
+| Axios | HTTP requests |
+| React Hook Form | Form management |
+| Zod | Data validation |
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js
+- npm
+- Access to the required backend API
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/sifat-arch/rentnest-frontend.git
+cd rentnest-frontend
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Configure Environment Variables
+
+Create a `.env.local` file in the root directory.
+
+```env
+NEXT_PUBLIC_BACKEND_URL=your_backend_api_url
+```
+
+Add any other environment variables required by the application. Use the exact variable names expected by your source code, and never commit secrets to GitHub.
+
+### 4. Start the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 5. Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+Run the production build:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The following is a general example. Adjust it to reflect the actual repository structure.
 
-## Deploy on Vercel
+```text
+rentnest-frontend/
+├── public/
+├── src/
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── hooks/
+│   ├── store/
+│   └── types/
+├── .gitignore
+├── package.json
+├── next.config.ts
+├── tsconfig.json
+└── README.md
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🔌 Backend Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+RentNest can communicate with a backend API to support authentication, property listings, rental requests, and other marketplace functionality.
+
+Configure the backend URL in `.env.local` and ensure the backend server is running and accessible.
+
+## 🌱 Future Improvements
+
+- Enhanced property search and filtering.
+- Improved accessibility and responsive design.
+- Better property discovery and user experience.
+- Additional dashboard analytics.
+- Performance and loading-state improvements.
+
+## 👨‍💻 Author
+
+**Sifat Ullah** — Full Stack Web Developer
+
+- **GitHub:** [@sifat-arch](https://github.com/sifat-arch)
+- **Email:** [sifatullah1004@gmail.com](mailto:sifatullah1004@gmail.com)
+- **Portfolio:** [Visit Portfolio](https://cute-lokum-f5a354.netlify.app/)
+
+---
+
+Built with ❤️ by Sifat Ullah.
