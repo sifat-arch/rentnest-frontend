@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
-const backendUrl = process.env.BACKEND_API_URL || "http://localhost:5000";
+let rawBackendUrl = (process.env.BACKEND_API_URL || "http://localhost:5000").trim();
+if (!rawBackendUrl.startsWith("http://") && !rawBackendUrl.startsWith("https://")) {
+  rawBackendUrl = `https://${rawBackendUrl}`;
+}
+const backendUrl = rawBackendUrl.replace(/\/+$/, "");
 
 const nextConfig: NextConfig = {
   images: {
