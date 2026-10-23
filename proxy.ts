@@ -4,6 +4,7 @@ import { NextRequest } from "next/server";
 import { jwtUtils } from "./utils/jwt";
 import { getNewAccessToken } from "./service/refreshToken";
 import { JwtPayload } from "jsonwebtoken";
+import { getBackendUrl } from "./lib/apiConfig";
 
 const AUTH_ROUTES = ["/login", "/register"];
 const PUBLIC_ROUTES = ["/", "about", "services"];

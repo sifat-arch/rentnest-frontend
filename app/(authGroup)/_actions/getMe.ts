@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 export const getMe = async () => {
   const cookieStore = await cookies();
@@ -13,12 +14,9 @@ export const getMe = async () => {
     };
   }
 
-  const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/me`, {
+  const backendUrl = getBackendUrl();
+  const res = await fetch(`${backendUrl}/api/auth/me`, {
     headers: {
-      // Authorization : accessToken as unknown as string,
-      // Authorization : `${accessToken}`,
-      // Authorization : `Bearer ${accessToken}`
-
       Cookie: `accessToken=${accessToken}`,
     },
 

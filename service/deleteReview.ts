@@ -2,6 +2,7 @@
 
 import { cookies } from "next/headers";
 import { revalidateTag } from "next/cache";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 export const deleteReview = async (id: string) => {
   const cookieStore = await cookies();
@@ -15,7 +16,8 @@ export const deleteReview = async (id: string) => {
     };
   }
 
-  const res = await fetch(`${process.env.BACKEND_API_URL}/api/reviews/${id}`, {
+  const backendUrl = getBackendUrl();
+  const res = await fetch(`${backendUrl}/api/reviews/${id}`, {
     method: "DELETE",
     headers: {
       Cookie: `accessToken=${accessToken}`,

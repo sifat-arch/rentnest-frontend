@@ -1,6 +1,6 @@
 "use server";
 
-const BACKEND_URL = process.env.BACKEND_API_URL || "http://localhost:5000";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 export interface ChatHistoryItem {
   role: "user" | "assistant";
@@ -12,7 +12,8 @@ export async function askNestBotAction(
   history: ChatHistoryItem[] = []
 ) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/ai/chat`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/ai/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,7 +23,6 @@ export async function askNestBotAction(
     });
 
     if (!res.ok) {
-      const err = await res.text();
       return {
         success: false,
         message: "NestBot is taking a quick rest. Please try again in a moment.",
@@ -59,7 +59,8 @@ export interface GeneratedListingOutput {
 
 export async function generateAiListingAction(input: GenerateAiListingInput) {
   try {
-    const res = await fetch(`${BACKEND_URL}/api/ai/generate-listing`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/ai/generate-listing`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

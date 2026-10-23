@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "@/lib/apiConfig";
 import { Outfit, Oxanium } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";

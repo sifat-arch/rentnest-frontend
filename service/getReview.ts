@@ -1,6 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 export const getReview = async (postId: string) => {
   const cookieStore = await cookies();
@@ -12,8 +13,9 @@ export const getReview = async (postId: string) => {
       headers["Cookie"] = `accessToken=${accessToken}`;
     }
 
+    const backendUrl = getBackendUrl();
     const res = await fetch(
-      `${process.env.BACKEND_API_URL}/api/reviews?propertyId=${postId}`,
+      `${backendUrl}/api/reviews?propertyId=${postId}`,
       {
         headers,
         cache: "no-store",

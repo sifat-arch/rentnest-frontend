@@ -4,6 +4,7 @@ import jwt, { JwtPayload } from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { fromJSONSchema, z } from "zod";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 const loginSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -50,8 +51,9 @@ export const loginAction = async (
   }
 
   const payload = validation.data;
+  const backendUrl = getBackendUrl();
 
-  const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/login`, {
+  const res = await fetch(`${backendUrl}/api/auth/login`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +107,8 @@ export const googleLoginAction = async (
   redirectTo?: string,
 ) => {
   try {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/google`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/auth/google`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -198,8 +201,9 @@ export const registerAction = async (
   }
 
   const payload = validation.data;
+  const backendUrl = getBackendUrl();
 
-  const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/register`, {
+  const res = await fetch(`${backendUrl}/api/auth/register`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

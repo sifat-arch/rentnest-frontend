@@ -2,6 +2,7 @@
 
 import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
+import { getBackendUrl } from "@/lib/apiConfig";
 
 type ReviewState = {
   success: boolean;
@@ -31,7 +32,8 @@ export const createReview = async (
   };
 
   try {
-    const res = await fetch(`${process.env.BACKEND_API_URL}/api/reviews`, {
+    const backendUrl = getBackendUrl();
+    const res = await fetch(`${backendUrl}/api/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
