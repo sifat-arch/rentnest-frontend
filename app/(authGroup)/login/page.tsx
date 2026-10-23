@@ -1,25 +1,23 @@
 import LoginForm from "../_components/LoginFrom";
+import AuthLayoutShell from "../_components/AuthLayoutShell";
 
 export default function LoginPage() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-zinc-950 p-4 text-zinc-100 antialiased selection:bg-primary selection:text-primary-foreground">
-      {/* Background Radial Glow Effect */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
-
-      <div className="relative w-full max-w-md space-y-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-8 shadow-2xl backdrop-blur-xl">
-        {/* FORM GENERIC TEXTS */}
-        <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">
-            Welcome Back!
-          </h1>
-          <p className="text-sm text-zinc-400">
-            Enter your credentials to access your account
-          </p>
-        </div>
-
-        {/* FORM */}
-        <LoginForm />
-      </div>
-    </div>
+    <AuthLayoutShell
+      eyebrow="Welcome Back"
+      title="Sign in to RentNest"
+      subtitle="Access your bookings, saved homes, and personalized dashboard."
+      heroImage="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=85"
+      quoteText="RentNest completely changed how we found our home. Verified listings and direct booking took away all the typical rental stress."
+      quoteAuthor="Sarah Jenkins"
+      quoteRole="Tenant in Dhanmondi, Dhaka"
+      highlights={[
+        "Access verified property listings instantly",
+        "Seamless digital lease & secure booking management",
+        "Direct communication with trusted landlords",
+      ]}
+    >
+      <LoginForm />
+    </AuthLayoutShell>
   );
 }

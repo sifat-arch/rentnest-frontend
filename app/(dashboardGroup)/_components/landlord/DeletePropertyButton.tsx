@@ -15,7 +15,7 @@ const DeletePropertyButton = ({ propertyId }: Props) => {
   const [pending, startTransition] = useTransition();
 
   const handleDelete = () => {
-    const ok = window.confirm("Are you sure you want to delete this property?");
+    const ok = window.confirm("Are you sure you want to delete this property listing?");
 
     if (!ok) return;
 
@@ -33,11 +33,13 @@ const DeletePropertyButton = ({ propertyId }: Props) => {
   return (
     <Button
       size="icon"
-      variant="destructive"
+      variant="outline"
       disabled={pending}
       onClick={handleDelete}
+      className="size-9 rounded-xl border-rose-200 bg-rose-50 text-rose-700 hover:border-rose-300 hover:bg-rose-100 transition cursor-pointer"
+      title="Delete Property"
     >
-      <Trash2 className="h-4 w-4" />
+      <Trash2 className="size-4 text-rose-600" />
     </Button>
   );
 };

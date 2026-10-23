@@ -14,8 +14,6 @@ type PaymentButtonProps = {
 const PaymentButton = ({ bookingId }: PaymentButtonProps) => {
   const [pending, startTransition] = useTransition();
 
-  console.log("the booking id", bookingId);
-
   const handlePayment = () => {
     startTransition(async () => {
       const result = await createPaymentSession(bookingId);
@@ -30,10 +28,13 @@ const PaymentButton = ({ bookingId }: PaymentButtonProps) => {
   };
 
   return (
-    <Button className="w-full" onClick={handlePayment} disabled={pending}>
-      <CreditCard className="mr-2 h-4 w-4" />
-
-      {pending ? "Redirecting..." : "Pay Now"}
+    <Button
+      onClick={handlePayment}
+      disabled={pending}
+      className="h-10 rounded-xl bg-[#d9a66b] px-5 text-xs font-semibold text-[#18342d] shadow-xs transition hover:bg-[#e8c18f] disabled:opacity-50 cursor-pointer"
+    >
+      <CreditCard className="mr-2 size-4 text-[#18342d]" />
+      {pending ? "Redirecting to Stripe..." : "Complete Payment"}
     </Button>
   );
 };

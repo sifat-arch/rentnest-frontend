@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -11,7 +10,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type Category = {
+export type Category = {
   id: string;
   name: string;
 };
@@ -24,16 +23,24 @@ type CategoryResponse = {
 
 type CategorySelectProps = {
   defaultValue?: string;
+  categories?: Category[];
 };
 
-const CategorySelect = ({ defaultValue }: CategorySelectProps) => {
-  const [categories, setCategories] = useState<Category[]>([]);
+const CategorySelect = ({ defaultValue, categories: propCategories }: CategorySelectProps) => {
+  const [categories, setCategories] = useState<Category[]>(propCategories ?? []);
   const [selectedCategory, setSelectedCategory] = useState(defaultValue ?? "");
 
   useEffect(() => {
+    if (propCategories && propCategories.length > 0) {
+      setCategories(propCategories);
+      if (!defaultValue && !selectedCategory) {
+        setSelectedCategory(propCategories[0].id);
+      }
+      return;
+    }
+
     const fetchCategories = async () => {
       try {
-        // next.config.ts-এ rewrites কনফিগার থাকায় সরাসরি Relative Path কাজ করবে
         const res = await fetch("/api/categories");
 
         if (!res.ok) {
@@ -42,7 +49,7 @@ const CategorySelect = ({ defaultValue }: CategorySelectProps) => {
 
         const result: CategoryResponse = await res.json();
 
-        if (result.success && result.data) {
+        if (result.success && result.data && Array.isArray(result.data)) {
           setCategories(result.data);
 
           if (!defaultValue && result.data.length > 0) {
@@ -55,20 +62,29 @@ const CategorySelect = ({ defaultValue }: CategorySelectProps) => {
     };
 
     fetchCategories();
-  }, [defaultValue]);
+  }, [defaultValue, propCategories, selectedCategory]);
 
   return (
     <div className="space-y-2">
-      <Label>Category</Label>
+      <Label htmlFor="category-select" className="text-xs font-semibold text-[#18342d]">
+        Property Category
+      </Label>
 
       <Select value={selectedCategory} onValueChange={setSelectedCategory}>
-        <SelectTrigger>
+        <SelectTrigger
+          id="category-select"
+          className="h-11 w-full rounded-xl border border-[#e7e5df] bg-white px-3.5 text-sm text-[#18342d] focus:border-[#18342d] focus:ring-1 focus:ring-[#18342d]"
+        >
           <SelectValue placeholder="Select Category" />
         </SelectTrigger>
 
-        <SelectContent>
+        <SelectContent className="rounded-2xl border-[#e7e5df] bg-white p-1.5 shadow-lg">
           {categories.map((category) => (
-            <SelectItem key={category.id} value={category.id}>
+            <SelectItem
+              key={category.id}
+              value={category.id}
+              className="cursor-pointer rounded-xl text-xs font-medium text-[#18342d] focus:bg-[#f7f6f2] focus:text-[#18342d]"
+            >
               {category.name}
             </SelectItem>
           ))}

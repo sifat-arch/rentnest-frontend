@@ -9,11 +9,11 @@ export const getProperties = async ({
 }) => {
   const params = new URLSearchParams();
 
-  if (query && query.search) {
+  if (query?.search) {
     params.set("search", query.search as string);
   }
 
-  if (query && query.minPrice) {
+  if (query?.minPrice) {
     params.set("minPrice", query.minPrice as string);
   }
 
@@ -38,33 +38,34 @@ export const getProperties = async ({
   }
 
   const cookieStore = await cookies();
-
   const accessToken = cookieStore.get("accessToken")?.value || null;
 
-  if (!accessToken) {
-    return {
-      success: false,
-      message: "User not logged in!",
-    };
+  const headers: Record<string, string> = {};
+  if (accessToken) {
+    headers["Cookie"] = `accessToken=${accessToken}`;
   }
 
-  console.log(params.toString(), "params is morning");
-  const res = await fetch(
-    `${process.env.BACKEND_API_URL}/api/property?${params.toString()}`,
-    {
-      headers: {
-        Cookie: `accessToken=${accessToken}`,
+  try {
+    const res = await fetch(
+      `${process.env.BACKEND_API_URL}/api/property?${params.toString()}`,
+      {
+        headers,
+        cache: "force-cache",
+        next: {
+          revalidate: 60,
+          tags: ["all-properties"],
+        },
       },
+    );
 
-      cache: "force-cache",
-      next: {
-        revalidate: 60 * 60 * 24,
-        tags: ["all-properties"],
-      },
-    },
-  );
-
-  const result = await res.json();
-
-  return result;
+    const result = await res.json();
+    return result;
+  } catch (err) {
+    console.error("Error fetching properties:", err);
+    return {
+      success: false,
+      message: "Failed to fetch properties",
+      data: [],
+    };
+  }
 };

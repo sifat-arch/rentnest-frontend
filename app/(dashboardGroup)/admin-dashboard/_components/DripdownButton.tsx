@@ -44,8 +44,10 @@ const DropdownButton = ({ userId, status }: DropdownButtonProps) => {
 
       if (res.success) {
         toast.success(res.message);
+        router.refresh();
       } else {
         toast.error(res.message);
+        router.refresh();
       }
     });
   };
@@ -53,27 +55,32 @@ const DropdownButton = ({ userId, status }: DropdownButtonProps) => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="outline" disabled={pending}>
-          <MoreVertical className="h-4 w-4" />
+        <Button
+          size="icon"
+          variant="outline"
+          disabled={pending}
+          className="size-8 rounded-xl border-[#e7e5df] text-[#18342d] hover:bg-[#f7f6f2] transition cursor-pointer"
+        >
+          <MoreVertical className="size-4" />
         </Button>
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="w-36 rounded-2xl border-[#e7e5df] p-1.5 shadow-lg bg-white">
         {status === "ACTIVE" ? (
           <DropdownMenuItem
-            className="cursor-pointer text-red-600 focus:text-red-600"
+            className="cursor-pointer rounded-xl text-rose-600 focus:bg-rose-50 focus:text-rose-700 text-xs font-semibold"
             onClick={handleBan}
           >
-            <Ban className="mr-2 h-4 w-4" />
-            Ban User
+            <Ban className="mr-2 size-3.5" />
+            Ban Account
           </DropdownMenuItem>
         ) : (
           <DropdownMenuItem
-            className="cursor-pointer text-green-600 focus:text-green-600"
+            className="cursor-pointer rounded-xl text-emerald-700 focus:bg-emerald-50 focus:text-emerald-800 text-xs font-semibold"
             onClick={handleUnban}
           >
-            <CheckCircle2 className="mr-2 h-4 w-4" />
-            Unban User
+            <CheckCircle2 className="mr-2 size-3.5" />
+            Unban Account
           </DropdownMenuItem>
         )}
       </DropdownMenuContent>

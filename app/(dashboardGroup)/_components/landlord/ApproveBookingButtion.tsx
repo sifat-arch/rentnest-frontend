@@ -2,7 +2,7 @@
 
 import { useTransition } from "react";
 import { toast } from "sonner";
-import { CheckCircle } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { statusUpdate } from "../../_actions/statusUpdate";
@@ -27,9 +27,13 @@ const ApproveBookingButton = ({ bookingId }: Props) => {
   };
 
   return (
-    <Button onClick={handleApprove} disabled={pending}>
-      <CheckCircle className="mr-2 h-4 w-4" />
-      {pending ? "Approving..." : "Approve"}
+    <Button
+      onClick={handleApprove}
+      disabled={pending}
+      className="h-9 rounded-xl bg-[#18342d] px-4 text-xs font-semibold text-white shadow-xs transition hover:bg-[#102b25] disabled:opacity-50 cursor-pointer"
+    >
+      <CheckCircle2 className="mr-1.5 size-3.5 text-[#e5bd8b]" />
+      {pending ? "Approving..." : "Approve Stay"}
     </Button>
   );
 };

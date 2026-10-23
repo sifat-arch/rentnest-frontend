@@ -26,7 +26,11 @@ const BookingButton = ({ propertyId }: BookingButtonProps) => {
   }, [state]);
 
   return (
-    <Button className="w-full" disabled={pending} onClick={() => action()}>
+    <Button
+      className="w-full rounded-full bg-[#18342d] text-white hover:bg-[#254d42] py-2 font-medium transition cursor-pointer shadow-sm"
+      disabled={pending}
+      onClick={() => action()}
+    >
       {pending ? "Booking..." : "Book Now"}
     </Button>
   );

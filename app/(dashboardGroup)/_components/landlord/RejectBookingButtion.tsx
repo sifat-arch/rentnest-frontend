@@ -27,8 +27,13 @@ const RejectBookingButton = ({ bookingId }: Props) => {
   };
 
   return (
-    <Button variant="destructive" onClick={handleReject} disabled={pending}>
-      <XCircle className="mr-2 h-4 w-4" />
+    <Button
+      variant="outline"
+      onClick={handleReject}
+      disabled={pending}
+      className="h-9 rounded-xl border-rose-200 bg-rose-50 px-3.5 text-xs font-semibold text-rose-700 shadow-2xs transition hover:bg-rose-100 hover:border-rose-300 disabled:opacity-50 cursor-pointer"
+    >
+      <XCircle className="mr-1.5 size-3.5 text-rose-600" />
       {pending ? "Rejecting..." : "Reject"}
     </Button>
   );

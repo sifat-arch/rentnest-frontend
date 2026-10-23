@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-@custom-variant dark (&:is(.dark *));
+@custom-variant dark (&:where(.dark, .dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -77,8 +77,8 @@
   --sidebar-foreground: oklch(0.147 0.004 49.25);
   --sidebar-primary: oklch(0.511 0.262 276.966);
   --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
-  --sidebar-accent: oklch(0.97 0.001 106.424);
-  --sidebar-accent-foreground: oklch(0.216 0.006 56.043);
+  --sidebar-accent: #d9a66b;
+  --sidebar-accent-foreground: #18342d;
   --sidebar-border: oklch(0.923 0.003 48.717);
   --sidebar-ring: oklch(0.709 0.01 56.259);
 }
@@ -111,8 +111,8 @@
   --sidebar-foreground: oklch(0.985 0.001 106.423);
   --sidebar-primary: oklch(0.585 0.233 277.117);
   --sidebar-primary-foreground: oklch(0.962 0.018 272.314);
-  --sidebar-accent: oklch(0.268 0.007 34.298);
-  --sidebar-accent-foreground: oklch(0.985 0.001 106.423);
+  --sidebar-accent: #d9a66b;
+  --sidebar-accent-foreground: #18342d;
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.553 0.013 58.071);
 }
@@ -127,4 +127,192 @@
   html {
     @apply font-sans;
   }
+}
+
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[.2em] text-[#b77940];
+}
+.section-title {
+  @apply mt-3 text-4xl font-medium leading-[.98] tracking-[-.06em] sm:text-6xl;
+}
+.section-title em {
+  @apply font-serif font-normal;
+}
+.footer-heading {
+  @apply text-xs font-semibold uppercase tracking-[.17em] text-[#e5bd8b];
+}
+.footer-links {
+  @apply mt-5 flex flex-col gap-3 text-sm text-white/55;
+}
+.footer-links a:hover {
+  @apply text-white;
+}
+
+/* =========================================================
+   RENTNEST GLOBAL DARK MODE SYSTEM
+   Deep luxurious emerald obsidian theme matching #18342d brand
+   ========================================================= */
+
+html.dark {
+  color-scheme: dark;
+}
+
+html.dark body {
+  background-color: #0b1412 !important;
+  color: #f4f3ee !important;
+}
+
+/* Base Headings & Titles in dark mode */
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark .section-title {
+  color: #f4f3ee !important;
+}
+
+html.dark .section-title em {
+  color: #e5bd8b !important;
+}
+
+html.dark .eyebrow {
+  color: #d9a66b !important;
+}
+
+html.dark blockquote {
+  color: #f4f3ee !important;
+}
+
+/* Background surfaces (all light greens & creams adapted to dark obsidian) */
+html.dark .bg-\[\#f7f6f2\],
+html.dark .bg-\[\#fdfdfc\],
+html.dark .bg-\[\#faf9f5\],
+html.dark .bg-\[\#fbfaf8\] {
+  background-color: #0b1412 !important;
+}
+
+/* Distinct elevated sections like "Explore by type", "RentNest in numbers", "For property owners" */
+html.dark .bg-\[\#e9eee7\],
+html.dark .bg-\[\#edf0e9\] {
+  background-color: #0e1a16 !important;
+}
+
+/* Cards & containers */
+html.dark .bg-white {
+  background-color: #12211c !important;
+}
+
+html.dark .bg-\[\#eae7df\],
+html.dark .bg-\[\#f0eee6\],
+html.dark .bg-\[\#f0f5f3\],
+html.dark .bg-\[\#eef5f2\],
+html.dark .bg-\[\#edf7f1\],
+html.dark .bg-\[\#fff7ed\],
+html.dark .bg-\[\#f1f3ed\],
+html.dark .bg-\[\#e4e7e0\] {
+  background-color: #182b25 !important;
+}
+
+/* Grid dividers & lines */
+html.dark .bg-\[\#cfd9cf\] {
+  background-color: #223a32 !important;
+}
+
+/* Card & panel borders */
+html.dark .border-\[\#e7e5df\],
+html.dark .border-\[\#f0eee6\],
+html.dark .border-\[\#dfe5dc\],
+html.dark .border-\[\#e5e7e1\],
+html.dark .border-\[\#e7e5df\]\/60 {
+  border-color: #223a32 !important;
+}
+
+html.dark .divide-\[\#dfe5dc\] > :not([hidden]) ~ :not([hidden]) {
+  border-color: #223a32 !important;
+}
+
+/* Text colors */
+html.dark .text-\[\#1c2925\],
+html.dark .text-\[\#18342d\] {
+  color: #f4f3ee !important;
+}
+
+html.dark .text-\[\#64716c\],
+html.dark .text-\[\#8a9691\],
+html.dark .text-\[\#9aa5a1\] {
+  color: #9eb0a8 !important;
+}
+
+/* CRITICAL CONTRAST: Gold cards & Gold sections MUST retain dark text */
+html.dark .bg-\[\#d9a66b\],
+html.dark .bg-\[\#d9a66b\] * {
+  color: #18342d !important;
+}
+
+html.dark .bg-\[\#d9a66b\] svg {
+  color: #18342d !important;
+  stroke: #18342d !important;
+}
+
+/* Interactive form inputs in dark mode */
+html.dark input:not([type="checkbox"]):not([type="radio"]):not([type="hidden"]),
+html.dark textarea,
+html.dark select {
+  background-color: #0e1a16 !important;
+  color: #f4f3ee !important;
+  border-color: #223a32 !important;
+}
+
+html.dark input::placeholder,
+html.dark textarea::placeholder {
+  color: #6d8078 !important;
+}
+
+/* Header & Sidebar Inset Glass in dark mode */
+html.dark header.bg-white\/80 {
+  background-color: rgba(18, 33, 28, 0.85) !important;
+  border-bottom-color: #223a32 !important;
+}
+
+/* Tables and cards */
+html.dark table tbody tr:hover {
+  background-color: #182b25 !important;
+}
+
+html.dark table th {
+  background-color: #152721 !important;
+  color: #d9a66b !important;
+  border-bottom-color: #223a32 !important;
+}
+
+html.dark table td {
+  border-color: #223a32 !important;
+}
+
+
+/* Translucent white cards in dark mode (empty states & search not found) */
+html.dark .bg-white\/70,
+html.dark .bg-white\/80,
+html.dark .bg-white\/90 {
+  background-color: #12211c !important;
+  border-color: #223a32 !important;
+}
+
+/* Dashboard Sidebar Active Item Contrast (Always Golden pill with dark forest text) */
+[data-sidebar="menu-button"][data-active="true"],
+html.dark [data-sidebar="menu-button"][data-active="true"] {
+  background-color: #d9a66b !important;
+  color: #18342d !important;
+}
+
+[data-sidebar="menu-button"][data-active="true"] *,
+html.dark [data-sidebar="menu-button"][data-active="true"] * {
+  color: #18342d !important;
+}
+
+[data-sidebar="menu-button"][data-active="true"] svg,
+html.dark [data-sidebar="menu-button"][data-active="true"] svg {
+  color: #18342d !important;
+  stroke: #18342d !important;
 }

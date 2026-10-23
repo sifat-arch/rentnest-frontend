@@ -9,9 +9,20 @@ const AUTH_ROUTES = ["/login", "/register"];
 const PUBLIC_ROUTES = ["/", "about", "services"];
 
 export async function proxy(request: NextRequest) {
-  //   return NextResponse.redirect(new URL("/home", request.url));
-
   const pathname = request.nextUrl.pathname;
+
+  // Immediately allow static assets, icons, and favicons through without auth check
+  if (
+    pathname === "/favicon.ico" ||
+    pathname === "/icon.svg" ||
+    pathname.endsWith(".svg") ||
+    pathname.endsWith(".ico") ||
+    pathname.endsWith(".png") ||
+    pathname.endsWith(".jpg") ||
+    pathname.endsWith(".webp")
+  ) {
+    return NextResponse.next();
+  }
 
   const cookieStore = await cookies();
 
@@ -102,5 +113,7 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|favicon.ico|_next/image|.*\\.png$).*)"],
+  matcher: [
+    "/((?!api|_next/static|_next/image|favicon.ico|icon.svg|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+  ],
 };

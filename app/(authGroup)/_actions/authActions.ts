@@ -85,15 +85,14 @@ export const loginAction = async (
     ) {
       redirect(redirectTo);
     }
-    // if (decodedToken.role === "TENANT") {
-    //   redirect("/tenant-dashboard");
-    // } else if (decodedToken.role === "LANDLORD") {
-    //   redirect("/landlord-dashboard");
-    // } else if (decodedToken.role === "ADMIN") {
-    //   redirect("/admin-dashboard");
-    // } else {
-    //   redirect("/dashboard");
-    // }
+
+    if (decodedToken?.role === "LANDLORD") {
+      redirect("/landlord-dashboard");
+    } else if (decodedToken?.role === "ADMIN") {
+      redirect("/admin-dashboard");
+    } else if (decodedToken?.role === "TENANT") {
+      redirect("/tenant-dashboard");
+    }
 
     redirect("/");
   }
@@ -101,15 +100,75 @@ export const loginAction = async (
   return result;
 };
 
+export const googleLoginAction = async (
+  idToken: string,
+  redirectTo?: string,
+) => {
+  try {
+    const res = await fetch(`${process.env.BACKEND_API_URL}/api/auth/google`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ idToken }),
+    });
+
+    const result = await res.json();
+
+    if (!result.success) {
+      return {
+        success: false,
+        message: result.message || "Google authentication failed",
+      };
+    }
+
+    const cookieStore = await cookies();
+    cookieStore.set("accessToken", result.data.accessToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 24,
+      sameSite: "lax",
+    });
+    cookieStore.set("refreshToken", result.data.refreshToken, {
+      httpOnly: true,
+      maxAge: 60 * 60 * 24 * 7,
+      sameSite: "lax",
+    });
+
+    const decodedToken = jwt.decode(result.data.accessToken) as JwtPayload;
+    const role = decodedToken?.role;
+
+    let target = "/";
+    if (redirectTo && redirectTo.startsWith("/") && !redirectTo.startsWith("//")) {
+      target = redirectTo;
+    } else if (role === "LANDLORD") {
+      target = "/landlord-dashboard";
+    } else if (role === "ADMIN") {
+      target = "/admin-dashboard";
+    } else if (role === "TENANT") {
+      target = "/tenant-dashboard";
+    }
+
+    return {
+      success: true,
+      message: "Logged in with Google successfully!",
+      redirectTo: target,
+    };
+  } catch (error) {
+    console.error("Google login action error:", error);
+    return {
+      success: false,
+      message: "Could not connect to authentication server",
+    };
+  }
+};
+
 const registerSchema = z.object({
-  name: z
-    .string()
-    .min(1, "Name is required")
-    .min(3, "Name must be at least 3 characters")
-    .max(50, "Name must be at most 50 characters"),
+  name: z.string().min(1, "Name is required"),
   email: z.string().email("Invalid email address"),
-  password: z.string().min(1, "Password is required"),
-  role: z.string(),
+  password: z.string().min(6, "Password must be at least 6 characters"),
+  role: z.enum(["TENANT", "LANDLORD"], {
+    error: "Role is required",
+  }),
 });
 
 export const registerAction = async (
@@ -145,13 +204,13 @@ export const registerAction = async (
     headers: {
       "Content-Type": "application/json",
     },
-
     body: JSON.stringify(payload),
   });
 
   const result = await res.json();
-
-  console.log(result, "register result");
+  if (result.success) {
+    redirect("/login");
+  }
 
   return result;
 };

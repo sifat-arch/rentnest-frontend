@@ -1,28 +1,23 @@
-import React from "react";
 import RegisterForm from "../_components/RegisterFrom";
+import AuthLayoutShell from "../_components/AuthLayoutShell";
 
-const RegisterPage = () => {
+export default function RegisterPage() {
   return (
-    <div className="relative flex min-h-screen w-full items-center justify-center bg-zinc-950 p-4 text-zinc-100 antialiased selection:bg-primary selection:text-primary-foreground">
-      {/* Background Radial Glow Effect */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),rgba(255,255,255,0))]" />
-
-      <div className="relative w-full max-w-md space-y-6 rounded-2xl border border-zinc-800/80 bg-zinc-900/60 p-8 shadow-2xl backdrop-blur-xl">
-        {/* FORM GENERIC TEXTS */}
-        <div className="space-y-2 text-center">
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-100">
-            Create an Account
-          </h1>
-          <p className="text-sm text-zinc-400">
-            Enter your details to create your new account
-          </p>
-        </div>
-
-        {/* FORM COMPONENT */}
-        <RegisterForm />
-      </div>
-    </div>
+    <AuthLayoutShell
+      eyebrow="Join RentNest"
+      title="Create your account"
+      subtitle="Join thousands of tenants and verified landlords finding home together."
+      heroImage="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=85"
+      quoteText="Listing our properties on RentNest connected us with serious, reliable tenants within days. The dashboard makes managing leases effortless."
+      quoteAuthor="Mahmudul Hasan"
+      quoteRole="Property Owner & Landlord, Gulshan"
+      highlights={[
+        "Quick onboarding for both Tenants and Landlords",
+        "Direct communication, transparent fees, zero hidden costs",
+        "Bank-grade security and verified identity protection",
+      ]}
+    >
+      <RegisterForm />
+    </AuthLayoutShell>
   );
-};
-
-export default RegisterPage;
+}

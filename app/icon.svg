@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <!-- Deep Forest Green Luxury Squircle Badge -->
+  <rect width="32" height="32" rx="8" fill="#18342d"/>
+  
+  <!-- Warm Champagne Gold Accent Ring -->
+  <rect x="1" y="1" width="30" height="30" rx="7" stroke="#d9a66b" stroke-width="1.5" stroke-opacity="0.9"/>
+  
+  <!-- Architectural Nest & Home Emblem in Pure Warm Gold -->
+  <path d="M16 6.5L7 14H10.5V24C10.5 24.8 11.2 25.5 12 25.5H20C20.8 25.5 21.5 24.8 21.5 24V14H25L16 6.5Z" fill="#d9a66b"/>
+  
+  <!-- Inner Architectural Portal Notch in Forest Green -->
+  <rect x="14" y="17" width="4" height="8.5" rx="1.5" fill="#18342d"/>
+  
+  <!-- Window Oculus in Forest Green -->
+  <circle cx="16" cy="12.5" r="1.5" fill="#18342d"/>
+  
+  <!-- Sparkle Accent Dot -->
+  <circle cx="23.5" cy="8.5" r="1.5" fill="#d9a66b"/>
+</svg>
